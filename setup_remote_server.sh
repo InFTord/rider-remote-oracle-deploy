@@ -28,8 +28,8 @@ curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar
 echo "Extracting IDE $IDE_NAME $IDE_VERSION"
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION && tar --strip-components=1 -xvf ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION
 
-rm -r ~/.cache/JetBrains/RemoteDev/dist/IDE_NAME-$IDE_VERSION/jbr
-rm -r ~/.cache/JetBrains/RemoteDev/dist/IDE_NAME-$IDE_VERSION.tar.gz
+rm -r ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION/jbr
+rm -r ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz
 
 sed -i 's/lib64\/ld-linux-x86-64.so.2/lib\/ld-linux-aarch64.so.1/g' ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION/plugins/remote-dev-server/bin/launcher.sh
 
