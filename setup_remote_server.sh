@@ -1,8 +1,12 @@
 #!/bin/sh
 
-IDEA_VERSION="2021.3.2"
+IDE_VERSION="2021.3.2"
+IDE_CODE="webstorm"
+IDE_NAME="WebStorm"
 
 if [ -f /etc/ls-release ]; then
+    OS="Ubuntu"
+elif [ -f /etc/lsb-release ]; then
     OS="Ubuntu"
 elif [ -f /etc/redhat-release ]; then
     OS="CentOS"
@@ -18,20 +22,20 @@ JBR_AARCH64_URL="https://cache-redirector.jetbrains.com/intellij-jbr/jbr-11_0_14
 
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist
 
-echo "Downloading IntelliJ IDEA $IDEA_VERSION"
-curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/ideaIU-$IDEA_VERSION.tar.gz https://download.jetbrains.com/idea/ideaIU-$IDEA_VERSION.tar.gz
+echo "Downloading IntelliJ IDEA $IDE_VERSION"
+curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz https://download.jetbrains.com/$IDE_CODE/$IDE_NAME-$IDE_VERSION.tar.gz
 
-echo "Extracting IntelliJ IDEA $IDEA_VERSION"
-mkdir -p ~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION && tar --strip-components=1 -xvf ~/.cache/JetBrains/RemoteDev/dist/ideaIU-$IDEA_VERSION.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION
+echo "Extracting IntelliJ IDEA $IDE_VERSION"
+mkdir -p ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION && tar --strip-components=1 -xvf ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION
 
-rm -r ~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION/jbr
-rm -r ~/.cache/JetBrains/RemoteDev/dist/ideaIU-$IDEA_VERSION.tar.gz
+rm -r ~/.cache/JetBrains/RemoteDev/dist/idea-$IDE_VERSION/jbr
+rm -r ~/.cache/JetBrains/RemoteDev/dist/ideaIU-$IDE_VERSION.tar.gz
 
-sed -i 's/lib64\/ld-linux-x86-64.so.2/lib\/ld-linux-aarch64.so.1/g' ~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION/plugins/remote-dev-server/bin/launcher.sh
+sed -i 's/lib64\/ld-linux-x86-64.so.2/lib\/ld-linux-aarch64.so.1/g' ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION/plugins/remote-dev-server/bin/launcher.sh
 
 echo "Downloading JBR aarch64 11_0_14_1"
 curl -fSsl -L --output ~/.cache/JetBrains/RemoteDev/dist/jbr.tar.gz $JBR_AARCH64_URL
-tar -xvf ~/.cache/JetBrains/RemoteDev/dist/jbr.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION
+tar -xvf ~/.cache/JetBrains/RemoteDev/dist/jbr.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/idea-$IDE_VERSION
 rm -r ~/.cache/JetBrains/RemoteDev/dist/jbr.tar.gz
 
 echo "Installing OpenJDK 11"
@@ -43,5 +47,5 @@ else
   sudo yum install java-11-openjdk -y
 fi
 
-echo "Success! Now, you can launch the remote server by executing \"~/.cache/JetBrains/RemoteDev/dist/idea-$IDEA_VERSION/bin/remote-dev-server.sh run <your project's dir>\""
+echo "Success! Now, you can launch the remote server by executing \"~/.cache/JetBrains/RemoteDev/dist/idea-$IDE_VERSION/bin/remote-dev-server.sh run <your project's dir>\""
 echo "Also, if you want to leave it running, take a look at systemd."
