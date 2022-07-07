@@ -19,12 +19,12 @@ fi
 # If you're using another version of IDEA, you'll have to change this to the correspond version
 # More info: https://github.com/JetBrains/JetBrainsRuntime#releases
 # Make sure you're installing for the aarch64.
-JBR_AARCH64_URL="https://cache-redirector.jetbrains.com/intellij-jbr/jbr-11_0_14_1-linux-aarch64-b1751.46.tar.gz"
+JBR_AARCH64_URL="https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk_jcef-17.0.3-linux-aarch64-b469.19.tar.gz"
 
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist
 
 echo "Downloading IDE $IDE_NAME $IDE_VERSION"
-curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz https://download.jetbrains.com/$IDE_CODE/JetBrains.$IDE_NAME-$IDE_VERSION.tar.gz
+curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz https://download.jetbrains.com/rider/JetBrains.Rider-2022.2-EAP7-222.3244.17.Checked.tar.gz
 
 echo "Extracting IDE $IDE_NAME $IDE_VERSION"
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION && tar --strip-components=1 -xvf ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION
