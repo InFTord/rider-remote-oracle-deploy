@@ -2,6 +2,7 @@
 
 IDE_VERSION="2022.1.2"
 IDE_CODE="rider"
+
 IDE_NAME="Rider"
 
 if [ -f /etc/ls-release ]; then
@@ -23,7 +24,7 @@ JBR_AARCH64_URL="https://cache-redirector.jetbrains.com/intellij-jbr/jbr-11_0_14
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist
 
 echo "Downloading IDE $IDE_NAME $IDE_VERSION"
-curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz https://download.jetbrains.com/$IDE_CODE/$IDE_NAME-$IDE_VERSION.tar.gz
+curl -fSsL --output ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz https://download.jetbrains.com/$IDE_CODE/JetBrains.$IDE_NAME-$IDE_VERSION.tar.gz
 
 echo "Extracting IDE $IDE_NAME $IDE_VERSION"
 mkdir -p ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION && tar --strip-components=1 -xvf ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION.tar.gz -C ~/.cache/JetBrains/RemoteDev/dist/$IDE_NAME-$IDE_VERSION
