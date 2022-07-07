@@ -1,8 +1,8 @@
 #!/bin/sh
 
-IDE_VERSION="2021.3.2"
-IDE_CODE="webstorm"
-IDE_NAME="WebStorm"
+IDE_VERSION="2022.1.2"
+IDE_CODE="rider"
+IDE_NAME="Rider"
 
 if [ -f /etc/ls-release ]; then
     OS="Ubuntu"
